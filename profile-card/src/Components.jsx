@@ -1,15 +1,11 @@
-const Comp = () => {
-  let name = "Arhum";
-  let age = 20;
-  let fav = ["Javascript", "Python", "React", "C++"];
-  let bio = "A passionate developer and a work holic person";
+const Comp = ({name,age,fav,hobbies,bio}) => {
+ 
   let image_url =
     "https://cdn.pixabay.com/photo/2012/04/18/23/36/boy-38262_1280.png";
-  let hobbies = ["Coding", "Reading", "Gaming"];
   
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+      <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl mb-4">
         <h1 className="text-3xl font-bold text-center text-blue-600 mb-4">
           Welcome to {name}'s Profile Card!!
         </h1>
