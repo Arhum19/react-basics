@@ -4,18 +4,20 @@ function Toggle() {
   const [isOn, setIsOn] = useState(true);
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-gray-900 to-gray-800">
+      <div className="max-w-sm w-full bg-gray-800/90 backdrop-blur-md rounded-xl shadow-2xl p-8 transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]">
         {isOn && (
-          <h1 className="text-2xl font-semibold text-center text-gray-800 mb-4">
-            Click on the button to hide this sentence
+          <h1 className="text-2xl font-bold text-center text-white mb-6 tracking-tight">
+            Click to toggle visibility
           </h1>
         )}
         <button
           onClick={() => setIsOn(!isOn)}
-          className={`w-full py-2 px-4 rounded-md text-white font-medium transition-colors duration-200 ${
-            isOn ? "bg-red-500 hover:bg-red-600" : "bg-green-500 hover:bg-green-600"
-          }`}
+          className={`w-full py-3 px-6 rounded-lg font-semibold text-white transition-all duration-300 ${
+            isOn
+              ? "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700"
+              : "bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700"
+          } shadow-md hover:shadow-lg`}
         >
           {isOn ? "Hide" : "Show"}
         </button>
