@@ -21,7 +21,9 @@ function App() {
         }}> Submit here:</button>
       </form>
       {subname && <h1> Your Name is: {subname}</h1>}
+      
     </div>
+    
   );
 }
 
