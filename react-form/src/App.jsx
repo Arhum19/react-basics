@@ -1,42 +1,45 @@
 import React, { useState } from "react";
 
 function App() {
-  const [inname, insetName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [gender, setGender] = useState("");
-  const [termsAccepted, setTermsAccepted] = useState(false);
-  const [comments, setComments] = useState("");
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    gender: "",
+    termsAccepted: false,
+    comments: "",
+  });
 
-  // store submitted data
   const [submittedData, setSubmittedData] = useState(null);
 
-  let handleSubmit = (e) => {
+  // Generic input handler
+  const handleChange = (e) => {
+    const { name, type, value, checked } = e.target;
+    setForm({
+      ...form,
+      [name]: type === "checkbox" ? checked : value,
+    });
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    // validate terms
-    if (!termsAccepted) {
+    if (!form.termsAccepted) {
       alert("You must accept the terms and conditions before submitting.");
       return;
     }
 
-    // store all form values
-    setSubmittedData({
-      name: inname,
-      email,
-      password,
-      gender,
-      termsAccepted,
-      comments,
-    });
+    setSubmittedData(form);
 
     // optional: clear inputs after submit
-    insetName("");
-    setEmail("");
-    setPassword("");
-    setGender("");
-    setTermsAccepted(false);
-    setComments("");
+    setForm({
+      name: "",
+      email: "",
+      password: "",
+      gender: "",
+      termsAccepted: false,
+      comments: "",
+    });
   };
 
   return (
@@ -47,8 +50,9 @@ function App() {
           <label>Name: </label>
           <input
             type="text"
-            value={inname}
-            onChange={(e) => insetName(e.target.value)}
+            name="name"
+            value={form.name}
+            onChange={handleChange}
             required
           />
         </div>
@@ -58,8 +62,9 @@ function App() {
           <label>Email: </label>
           <input
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            value={form.email}
+            onChange={handleChange}
             required
           />
         </div>
@@ -69,8 +74,9 @@ function App() {
           <label>Password: </label>
           <input
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name="password"
+            value={form.password}
+            onChange={handleChange}
             required
           />
         </div>
@@ -80,16 +86,18 @@ function App() {
           <label>Gender: </label>
           <input
             type="radio"
+            name="gender"
             value="male"
-            checked={gender === "male"}
-            onChange={(e) => setGender(e.target.value)}
+            checked={form.gender === "male"}
+            onChange={handleChange}
           />{" "}
           Male
           <input
             type="radio"
+            name="gender"
             value="female"
-            checked={gender === "female"}
-            onChange={(e) => setGender(e.target.value)}
+            checked={form.gender === "female"}
+            onChange={handleChange}
           />{" "}
           Female
         </div>
@@ -99,8 +107,9 @@ function App() {
           <label>Terms and conditions: </label>
           <input
             type="checkbox"
-            checked={termsAccepted}
-            onChange={(e) => setTermsAccepted(e.target.checked)}
+            name="termsAccepted"
+            checked={form.termsAccepted}
+            onChange={handleChange}
           />{" "}
           Accept
         </div>
@@ -110,8 +119,9 @@ function App() {
           <label>Comments: </label>
           <input
             type="text"
-            value={comments}
-            onChange={(e) => setComments(e.target.value)}
+            name="comments"
+            value={form.comments}
+            onChange={handleChange}
           />
         </div>
         <br />
@@ -119,19 +129,28 @@ function App() {
         <button type="submit">Submit Form</button>
       </form>
 
-      {/* Show submitted data */}
       {submittedData && (
         <div style={{ marginTop: "20px" }}>
           <h2>Submitted Data:</h2>
-          <p><strong>Name:</strong> {submittedData.name}</p>
-          <p><strong>Email:</strong> {submittedData.email}</p>
-          <p><strong>Password:</strong> {submittedData.password}</p>
-          <p><strong>Gender:</strong> {submittedData.gender}</p>
+          <p>
+            <strong>Name:</strong> {submittedData.name}
+          </p>
+          <p>
+            <strong>Email:</strong> {submittedData.email}
+          </p>
+          <p>
+            <strong>Password:</strong> {submittedData.password}
+          </p>
+          <p>
+            <strong>Gender:</strong> {submittedData.gender}
+          </p>
           <p>
             <strong>Terms Accepted:</strong>{" "}
             {submittedData.termsAccepted ? "Yes" : "No"}
           </p>
-          <p><strong>Comments:</strong> {submittedData.comments}</p>
+          <p>
+            <strong>Comments:</strong> {submittedData.comments}
+          </p>
         </div>
       )}
     </div>
