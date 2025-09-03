@@ -6,7 +6,7 @@ function List() {
     },
     { id: 2, name: "bassam" },
     { id: 3, name: "wardaa" },
-    { id: 3, name: "wardaa" },
+    { id: 4, name: "alisha" },
   ];
   return (
     <div>
