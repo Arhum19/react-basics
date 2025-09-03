@@ -23,7 +23,7 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.termsAccepted) {
-      alert("You must accept the terms and conditions before submitting.");
+      alert("You must accept ours terms and conditions before submitting.");
       return;
     }
     setSubmittedData(form);
